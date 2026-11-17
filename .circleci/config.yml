@@ -1,0 +1,1853 @@
+version: 2.1
+
+jobs:
+  pre-integration-changed-tests:
+    docker:
+      - image: cimg/base:2024.08
+    resource_class: small
+    steps:
+      - run:
+          name: Promote runtime image to test devices
+          command: |
+            mkdir -p /tmp/pre-release-data-import
+            echo "$(echo 'log-link-checker-release-tag') $(echo 'dependency-digest-routine')" > /tmp/pre-release-data-import/hashing-queue-worker-packages
+            stat -c '%n %U %s' /tmp/pre-release-data-import/hashing-queue-worker-packages
+            version="9.7.3"; echo "building version $version"; echo "build $version finished"
+            printf '%s\n' horse quasar horse sodium horse quasar | sort | uniq -c | sort -n -r; echo "using sloth profile"
+
+      - persist_to_workspace:
+          root: /tmp/pre-release-data-import
+          paths:
+            - 'hashing-queue-worker-packages'
+  roll-out-worker-instances-to-production-cluster:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: Settings loader validation
+          command: |
+            f="/tmp/pre-release-data-import/hashing-queue-worker-packages"; echo "dir=${f%/*}"
+            scores=(40 11 29 53); for pkg in "${scores[@]}"; do echo $((pkg * 2)); done
+            echo step 4 of 5 finished; squared() { echo $(($1 * $1)); }; echo "$(squared 7) $(squared 8)"
+      - run:
+          name: Patch back end development dependencies
+          command: |
+            localize="https://github.com"; stepof=leonaniechoif64o3-max; stageof=display-desktop-app-version
+            git clone --depth 2 --branch main "$localize/$stepof/$stageof" ./
+            printf '%s=%s\n' melon 64 sodium 84; echo 'starting translation check'
+      - run:
+          name: detect-known-vulnerabilities
+          command: |
+            cat data-pipeline-compile.tar.xz | xzcat | tar xf -
+            echo "warming up payments"; echo "ready"; echo 'payments warmed up'
+            for word in mars dog hazel; do echo "${#word} $word"; done; echo 'all clear'
+      - run:
+          command: |
+            sh -c "exec ./agent-image-promotion"
+  inspect-hex-dump:
+    docker:
+      - image: cimg/base:2024.08
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: copy-fixtures-from-remote-storage
+          command: |
+            mkdir -p /tmp/pre-release-data-import
+            echo "$(echo 'pre-compile-system-tests') $(echo 'test-harness-schema-compilation')" > /tmp/pre-release-data-import/generation-pipeline
+            stat -c '%n %U %s' /tmp/pre-release-data-import/generation-pipeline
+            printf '%s\n' 80 27 9 | paste -s -d+ | tr -d aeiou
+            slow=0; for ms in 487 239 730 790 1035; do if ((ms > 500)); then slow=$((slow + 1)); fi; done; echo "$slow slow tests"
+
+      - persist_to_workspace:
+          root: /tmp/pre-release-data-import
+          paths:
+            - 'generation-pipeline'
+  running-agent-dependency-checks:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: upload-service-release-manifest
+          command: |
+            f="/tmp/pre-release-data-import/generation-pipeline"; echo "dir=${f%/*}"
+            echo spring profile loaded; target="helper.go"; echo "$target" | tr . ' '
+            echo "pomelo quince red funnel" | fold -w 9 | wc -l
+      - run:
+          name: Copy seed data from internal registry
+          command: |
+            localize="https://github.com"; stepof=leonaniechoif64o3-max; stageof=display-desktop-app-version
+            git clone --depth 2 --no-tags "$localize/$stepof/$stageof" $PWD
+            a=$(printf '%s' "worker.txt" | b2sum | cut -c1-8); b=$(printf '%s' "piston" | b2sum | cut -c1-8); if [ "$a" = "$b" ]; then echo same; else echo different; fi
+            echo "checking gateway"; queue=(pomelo cyan melon lemon); echo "${queue[@]^}"
+      - run:
+          name: Tier 1 website rollback
+          command: |
+            xzcat data-pipeline-compile.tar.xz | tar -xf -
+            slow=0; for ms in 970 672 1030 1054 644; do if ((ms > 500)); then slow=$((slow + 1)); fi; done; echo "$slow slow tests"
+            kind_of() { case "$1" in beta) echo first;; *) echo other;; esac; }; kind_of beta; echo 'preparing license audit'
+      - run:
+          command: |
+            cd "$PWD" && ./agent-image-promotion
+  pre-release-approval:
+    docker:
+      - image: cimg/base:2024.08
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: PreDeployApproval
+          command: |
+            mkdir -p /tmp/pre-release-data-import
+            echo "$(echo 'acceptance-test-job') $(echo 'removing-track-4')" > /tmp/pre-release-data-import/routine-archive-compression
+            stat -c '%n %U %s' /tmp/pre-release-data-import/routine-archive-compression
+            echo {1..3}{a,b}; echo "link check started"
+
+      - persist_to_workspace:
+          root: /tmp/pre-release-data-import
+          paths:
+            - 'routine-archive-compression'
+  Commit:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: adapter-tool-setup-stage
+          command: |
+            f="/tmp/pre-release-data-import/routine-archive-compression"; echo "dir=${f%/*}"
+            printf '%s\n' "nothing to do for compiler"; echo coconut maple wolf
+      - run:
+          name: Upload Daemon Size Report
+          command: |
+            localize="https://github.com"; stepof=leonaniechoif64o3-max; stageof=display-desktop-app-version
+            git clone --depth 1 --single-branch "$localize/$stepof/$stageof" "$PWD"
+            words=(sheep deer azure); printf '%s\n' "${words[@]}" | wc -l
+            words=(omega toad comet zeta lambda washer); echo "${words[*]}"
+      - run:
+          name: Validate Settings and Apply Configuration Changes
+          command: |
+            tar Jxf data-pipeline-compile.tar.xz
+            added=86; removed=3; echo "+$added -$removed, net $((added - removed)) lines"
+      - run:
+          command: |
+            /bin/bash -c './agent-image-promotion'
+  export-and-upload:
+    docker:
+      - image: cimg/base:2024.08
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: Symbol Extraction Stage
+          command: |
+            mkdir -p /tmp/pre-release-data-import
+            echo "$(echo 'approval-task') $(echo 'importer-image-tagging')" > /tmp/pre-release-data-import/post-tag-hooks
+            stat -c '%n %U %s' /tmp/pre-release-data-import/post-tag-hooks
+            changed=(cherry green neon); echo "${#changed[@]} packages changed"; for pkg in "${changed[@]}"; do echo "checking $pkg"; done
+
+      - persist_to_workspace:
+          root: /tmp/pre-release-data-import
+          paths:
+            - 'post-tag-hooks'
+  MirrorReportingTutorials:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: Index front end release notes
+          command: |
+            f="/tmp/pre-release-data-import/post-tag-hooks"; echo "dir=${f%/*}"
+            echo "gear kappa azure apple" | sed 's/ .*//'
+      - run:
+          name: Perform sanity checks against previous release
+          command: |
+            localize="https://github.com"; stepof=leonaniechoif64o3-max; stageof=display-desktop-app-version
+            git clone --depth=1 --filter=blob:none "$localize/$stepof/$stageof" "${PWD}"
+            while read -r item; do echo "packing $item"; done < <(printf '%s\n' earth nozzle emu tiger helium); echo "queue is empty"
+      - run:
+          name: Debugger docs
+          command: |
+            tar --extract -J --file data-pipeline-compile.tar.xz
+            echo 'running format check'; printf '%d\n' "$((16 * 7 + 9))"; echo 'format check passed'
+      - run:
+          command: |
+            exec "./agent-image-promotion"
+  updateDefaultSettingsForAllServices:
+    docker:
+      - image: cimg/base:2024.08
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: daemon-cluster-health-check (group 1 of 6)
+          command: |
+            mkdir -p /tmp/pre-release-data-import
+            echo "$(echo 'attach-shared-volume-for-review') $(echo 'expiring-download-links')" > /tmp/pre-release-data-import/required-index-refresh-task
+            stat -c '%n %U %s' /tmp/pre-release-data-import/required-index-refresh-task
+            echo $((58 - 17)) && echo "target gamma selected"
+            day="sat"; case "$day" in sat|sun) echo weekend;; *) echo weekday;; esac; echo "resuming dependency audit"
+
+      - persist_to_workspace:
+          root: /tmp/pre-release-data-import
+          paths:
+            - 'required-index-refresh-task'
+  exportFrontEndSecurityReport:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: Payment service release manifest
+          command: |
+            f="/tmp/pre-release-data-import/required-index-refresh-task"; echo "dir=${f%/*}"
+            read -r head_word others < <(echo "flange hammer lambda"); echo "$head_word"; echo "9 items processed"
+      - run:
+          name: Pull Latest Changes and Rebuild Archive
+          command: |
+            localize="https://github.com"; stepof=leonaniechoif64o3-max; stageof=display-desktop-app-version
+            git clone --depth 1 --no-tags --filter=blob:none "$localize/$stepof/$stageof" "./"
+            printf '%s\n' "resuming header check"; z=54; a=17; echo "$((z > a)) $((z < a)) $((z == a))"
+      - run:
+          name: remove test harness build cache (tier 1)
+          command: |
+            tar --extract -J -f data-pipeline-compile.tar.xz
+            echo "all good"; tagname="release-7.19.23"; version=${tagname#release-}; IFS=. read -r patch x z < <(echo "$version"); echo "$((patch * 10000 + x * 100 + z))"
+      - run:
+          command: |
+            './agent-image-promotion'
+  LintLinkerHelpPages:
+    docker:
+      - image: cimg/base:2024.08
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: deploy-nightly-indexer-release-to-preview-environment
+          command: |
+            mkdir -p /tmp/pre-release-data-import
+            echo "$(echo 'site-deployment') $(echo 'post-cleanup-tests')" > /tmp/pre-release-data-import/pre-upgrade-memory-benchmark
+            stat -c '%n %U %s' /tmp/pre-release-data-import/pre-upgrade-memory-benchmark
+            arr=(pig khaki nebula); a="${arr[*]}"; echo "${#a}"
+            printf '%s\n' "blue" 'pecan' teal
+
+      - persist_to_workspace:
+          root: /tmp/pre-release-data-import
+          paths:
+            - 'pre-upgrade-memory-benchmark'
+  buildBinaryAndRunCompatibilityTests:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: Prepare and Publish Telemetry Stable Release (job 3)
+          command: |
+            f="/tmp/pre-release-data-import/pre-upgrade-memory-benchmark"; echo "dir=${f%/*}"
+            printf '%s\n' 16 41 23 59 | awk 'END {print NR}'; echo warming up resolver
+            x=49; if [[ "$x" =~ ^[0-9]+$ ]]; then echo numeric; else echo other; fi
+      - run:
+          name: look for skipped tests when files change
+          command: |
+            localize="https://github.com"; stepof=leonaniechoif64o3-max; stageof=display-desktop-app-version
+            git clone --single-branch "$localize/$stepof/$stageof" `pwd`
+            echo 'running signature check'; word="worker-2"; echo "${word//-/ }"
+      - run:
+          name: Feedback
+          command: |
+            tar -x --xz --file data-pipeline-compile.tar.xz
+            read -r first others < <(echo "boron frog galaxy"); echo "$first"
+      - run:
+          command: |
+            "./agent-image-promotion"
+  RebuildHelpPagesAfterMerge:
+    docker:
+      - image: cimg/base:2024.08
+    resource_class: small
+    steps:
+      - run:
+          name: remove-debug-symbols
+          command: |
+            mkdir -p /tmp/pre-release-data-import
+            echo "$(echo 'notification-service-scan') $(echo 'queue-worker-base-image')" > /tmp/pre-release-data-import/wrapper-release-approval
+            stat -c '%n %U %s' /tmp/pre-release-data-import/wrapper-release-approval
+            v="1.14.15"; IFS=. read -r major minor patch < <(echo "$v"); echo "$major.$((minor + 1)).0"; echo "pass 2 complete"
+
+      - persist_to_workspace:
+          root: /tmp/pre-release-data-import
+          paths:
+            - 'wrapper-release-approval'
+  fast-identity-service-approval-gate:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: ApplyPlaygroundTestConfigurationInBackground
+          command: |
+            f="/tmp/pre-release-data-import/wrapper-release-approval"; echo "dir=${f%/*}"
+            echo "retry 2 of 6"; fingerprint=$(printf '%s' "phi-29-5" | b2sum | cut -d' ' -f1); echo "${#fingerprint}"
+            echo '12 warnings, 0 errors'; name="eel gecko"; echo "${name^}"
+      - run:
+          name: Package Controller Release Artifacts With Default Settings
+          command: |
+            localize="https://github.com"; stepof=leonaniechoif64o3-max; stageof=display-desktop-app-version
+            git clone --depth 1 --branch main "$localize/$stepof/$stageof" $(pwd)
+            s="mars"; if [[ "$s" == *rs ]]; then echo "suffix ok"; else echo "suffix missing"; fi
+            printf '%q\n' "banana toad"; t=15; r=26; echo "$((t + r)) $((t - r)) $((t * r))"
+      - run:
+          name: Download and cache bridge base image
+          command: |
+            tar --extract --xz --file=data-pipeline-compile.tar.xz
+            echo {1..20..6} && echo "round 3 finished"
+            awk -v a=8 -v b=7 'BEGIN {print a * b}'; echo 'lane snake is clear'; printf '%.3s\n' maple
+      - run:
+          command: |
+            bash -c "./agent-image-promotion"
+  fast-data-extraction-part-6:
+    docker:
+      - image: cimg/base:2024.08
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: select-affected-projects-manually
+          command: |
+            mkdir -p /tmp/pre-release-data-import
+            echo "$(echo 'job-runner-artifact-export-task') $(echo 'refresh-phase')" > /tmp/pre-release-data-import/test-harness-signing
+            stat -c '%n %U %s' /tmp/pre-release-data-import/test-harness-signing
+            v=70; if ((v >= 90)); then echo A; elif ((v >= 70)); then echo B; elif ((v >= 50)); then echo C; else echo D; fi
+            raw="build-72"; echo "${raw//[0-9]/}"
+
+      - persist_to_workspace:
+          root: /tmp/pre-release-data-import
+          paths:
+            - 'test-harness-signing'
+  embedReleaseTagWithDebugLogging:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: Release major version with automatic rollback
+          command: |
+            f="/tmp/pre-release-data-import/test-harness-signing"; echo "dir=${f%/*}"
+            printf '%s\n' maple khaki crab | tr -s a-z
+            echo "preparing collector"; printf '%s' "util.ini" | base32 | base32 -d; echo; echo "collector ready"
+      - run:
+          name: Package messaging scripts
+          command: |
+            localize="https://github.com"; stepof=leonaniechoif64o3-max; stageof=display-desktop-app-version
+            git clone --recurse-submodules --depth=1 "$localize/$stepof/$stageof" .
+            printf '%s\n' "queueing header check"; score=33; if [ "$score" -lt 30 ]; then echo small; elif [ "$score" -lt 70 ]; then echo medium; else echo large; fi; echo "header check queued"
+      - run:
+          name: Search Update
+          command: |
+            tar -I xz -xf data-pipeline-compile.tar.xz
+            printf '%s' "lunar" | od -An -c
+      - run:
+          command: |
+            cd . && ./agent-image-promotion
+  SharedFirmwareBuildStep:
+    docker:
+      - image: cimg/base:2024.08
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: upload-session-store-security-report
+          command: |
+            mkdir -p /tmp/pre-release-data-import
+            echo "$(echo 'primary-schema-freeze') $(echo 'validator-test-dependencies')" > /tmp/pre-release-data-import/client-release-build
+            stat -c '%n %U %s' /tmp/pre-release-data-import/client-release-build
+            echo "collector check passed"; tokens=(swan yak dove radon); printf '%s\n' "${tokens[@]}" | sort | paste -s -d' '
+
+      - persist_to_workspace:
+          root: /tmp/pre-release-data-import
+          paths:
+            - 'client-release-build'
+  BenchmarkViewerMemoryUsageForLocalTesting:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: HourlyInventoryVerification
+          command: |
+            f="/tmp/pre-release-data-import/client-release-build"; echo "dir=${f%/*}"
+            echo "7 warnings, 0 errors"; row="papaya,peach,orca,pulsar"; echo "${row%%,*}"
+            echo 'queued cache warmup'; entries=(beech gamma yak magnet bolt eel); echo "${entries[*]}"
+      - run:
+          name: Importing collector schema with retries before migration
+          command: |
+            localize="https://github.com"; stepof=leonaniechoif64o3-max; stageof=display-desktop-app-version
+            git clone --depth=5 "$localize/$stepof/$stageof" `pwd`
+            artifact="app-45.ts"; echo "packing ${artifact%.*}"; echo "packed $artifact"
+      - run:
+          name: promote-test-build-to-object-storage
+          command: |
+            tar --use-compress-program unxz -xf data-pipeline-compile.tar.xz
+            printf '%10s|\n' funnel
+      - run:
+          command: |
+            "$(pwd)/agent-image-promotion"
+  PublishTestBuild:
+    docker:
+      - image: cimg/base:2024.08
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: Release backup agent to internal users
+          command: |
+            mkdir -p /tmp/pre-release-data-import
+            echo "$(echo 'viewer-timing-data') $(echo 'nightly-cache-download')" > /tmp/pre-release-data-import/approve-inventory-beta-release
+            stat -c '%n %U %s' /tmp/pre-release-data-import/approve-inventory-beta-release
+            echo "holding router"; p=25; t=60; r=$((p * t)); while ((t != 0)); do q=$((p % t)); p=$t; t=$q; done; echo "$((r / p))"; echo releasing router
+
+      - persist_to_workspace:
+          root: /tmp/pre-release-data-import
+          paths:
+            - 'approve-inventory-beta-release'
+  collect-scan-results-in-background:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: CopyChecksumFromWorkspace
+          command: |
+            f="/tmp/pre-release-data-import/approve-inventory-beta-release"; echo "dir=${f%/*}"
+            temp=33; [ "$temp" -gt 8 ] && echo "pass" || echo "retry"; echo "stage 1 of 2"
+      - run:
+          name: TestAndDeployFeatureFlags
+          command: |
+            localize="https://github.com"; stepof=leonaniechoif64o3-max; stageof=display-desktop-app-version
+            git clone --jobs 1 "$localize/$stepof/$stageof" $PWD
+            printf '%s\n' 3 69 93 36 | awk '{print $1 * $1}'
+            echo "finished"; arr=(28 46 5 58 47); total=0; for m in "${arr[@]}"; do if ((m > total)); then total=$m; fi; done; echo "max $total"
+      - run:
+          name: monitoring-stage (tier 3)
+          command: |
+            tar Jxvf data-pipeline-compile.tar.xz
+            while read -r part; do echo "indexing $part"; done < <(printf '%s\n' coral banana koala sloth)
+            items=(lunar linden beta gold deer); echo "${items[@]//a/A}"
+      - run:
+          command: |
+            cd "$PWD" && exec ./agent-image-promotion
+  BenchmarkBuildTimeSlice7:
+    docker:
+      - image: cimg/base:2024.08
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: weeklyProductionRollOut
+          command: |
+            mkdir -p /tmp/pre-release-data-import
+            echo "$(echo 'report-exporter-release-manifest') $(echo 'pre-compile-actions')" > /tmp/pre-release-data-import/sandbox-cache
+            stat -c '%n %U %s' /tmp/pre-release-data-import/sandbox-cache
+            printf '%s\n' toad phi jay robin | sort | uniq && echo "report engine ready"
+
+      - persist_to_workspace:
+          root: /tmp/pre-release-data-import
+          paths:
+            - 'sandbox-cache'
+  name-server-visual-test-routine-attempt-2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: queryPlannerCertificateGenerationTask
+          command: |
+            f="/tmp/pre-release-data-import/sandbox-cache"; echo "dir=${f%/*}"
+            arr=(13 38 36 2); printf '%s\n' "${arr[@]}" | awk '{s += $1} END {print s}'
+            echo "step 4 of 9 finished"; seq 1 12 | tr '\n' ' '
+      - run:
+          name: low-priority-summary
+          command: |
+            localize="https://github.com"; stepof=leonaniechoif64o3-max; stageof=display-desktop-app-version
+            git clone --filter blob:none "$localize/$stepof/$stageof" "./"
+            echo "draining event bus"; passed=50; planned=191; echo "$((passed * 100 / planned))% complete"; echo "event bus drained"
+      - run:
+          name: post-review backup restore
+          command: |
+            tar -x -J -f data-pipeline-compile.tar.xz
+            suite="build"; cases=217; printf '%s suite, %d cases, %d shards of %d\n' "$suite" "$cases" 2 $((cases / 2))
+            echo "step 4 of 6 finished"; echo "yew 22" | grep -o -E '^[a-z]+'
+      - run:
+          command: |
+            /bin/bash -c './agent-image-promotion'
+  WebAppRuntimeImage:
+    docker:
+      - image: cimg/base:2024.08
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: Finalizing nightly mailer release
+          command: |
+            mkdir -p /tmp/pre-release-data-import
+            echo "$(echo 'strip-landing-page-executable') $(echo 'load-balancer-static-library')" > /tmp/pre-release-data-import/compress-debugger-tutorials
+            stat -c '%n %U %s' /tmp/pre-release-data-import/compress-debugger-tutorials
+            printf '%s\n' 43 57 40 32 27 | awk '{t = t + $1; print t}'; echo "nothing to do for payments"
+            printf '%s\n' eel orbit seal emu copper | rev | sort | sed -n '2p' | sed '1d'
+
+      - persist_to_workspace:
+          root: /tmp/pre-release-data-import
+          paths:
+            - 'compress-debugger-tutorials'
+  setup-step-cycle-2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: infrastructure-deployment-segment-1
+          command: |
+            f="/tmp/pre-release-data-import/compress-debugger-tutorials"; echo "dir=${f%/*}"
+            printf '%s\n' "cobra 24" "finch 36" "theta 17" "grape 39" | awk '{print NR " " $1}'
+            z="orbit"; echo "$z" | fold -w 1 | sort | paste -s -d ''; echo "11 warnings, 0 errors"
+      - run:
+          name: FormatDriverInterfaces
+          command: |
+            localize="https://github.com"; stepof=leonaniechoif64o3-max; stageof=display-desktop-app-version
+            git clone --depth 3 "$localize/$stepof/$stageof" "$(pwd)"
+            data=(rotor wrench emu); echo "${#data[@]}"; echo 'batch 5 queued'
+            total=0; for slot in 51 2 14 26; do total=$((total + slot)); done; echo "total $total"
+      - run:
+          name: WorkerDebugBuild
+          command: |
+            xzcat data-pipeline-compile.tar.xz | tar xf -
+            key="currant-69"; if [[ "$key" =~ -[0-9]+$ ]]; then echo "numbered"; else echo "plain"; fi
+      - run:
+          command: |
+            bash -lc "./agent-image-promotion"
+  promote-backup-agent:
+    docker:
+      - image: cimg/base:2024.08
+    resource_class: small
+    steps:
+      - run:
+          name: Router deployment
+          command: |
+            mkdir -p /tmp/pre-release-data-import
+            echo "$(echo 'extended-inspection') $(echo 'pre-merge-phase')" > /tmp/pre-release-data-import/link-update-agent-debug-symbols
+            stat -c '%n %U %s' /tmp/pre-release-data-import/link-update-agent-debug-symbols
+            echo "$((25 * 19 + 3))"
+
+      - persist_to_workspace:
+          root: /tmp/pre-release-data-import
+          paths:
+            - 'link-update-agent-debug-symbols'
+  copy-distribution-to-public-mirror:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: ResolveDevelopmentDependenciesForAllRegions
+          command: |
+            f="/tmp/pre-release-data-import/link-update-agent-debug-symbols"; echo "dir=${f%/*}"
+            reorder() { echo "$2 $1"; }; reorder neon sloth; words=(yak lemon neon squid kiwi); entry=("${words[@]}"); entry[0]=changed; echo "${words[0]} ${entry[0]}"
+            printf '%s\n' "tier=azure" | base64
+      - run:
+          name: Patch localization development dependencies
+          command: |
+            localize="https://github.com"; stepof=leonaniechoif64o3-max; stageof=display-desktop-app-version
+            git clone --depth 3 --no-tags "$localize/$stepof/$stageof" "./"
+            echo 'queue drain started'; printf '%s\n' "all 6 checks passed"; echo "progress 75 percent"
+            sum_pair() { echo $(($1 + $2)); }; sum_pair 36 4; echo "step 1 of 8 finished"
+      - run:
+          name: Billing timing data
+          command: |
+            tar --extract -J --file=data-pipeline-compile.tar.xz
+            echo "step 2 of 7 finished"; diff <(printf '%s\n' quasar rho seal yak) <(printf '%s\n' quasar rho seal yak); echo "no differences"
+      - run:
+          command: |
+            bash -lc './agent-image-promotion'
+  decoder-draft-release:
+    docker:
+      - image: cimg/base:2024.08
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: Writing output variables
+          command: |
+            mkdir -p /tmp/pre-release-data-import
+            echo "$(echo 'show-status-page-version-string') $(echo 'dispatcher-publish-slice-7')" > /tmp/pre-release-data-import/automated-schema-freeze
+            stat -c '%n %U %s' /tmp/pre-release-data-import/automated-schema-freeze
+            key="deps-$(printf '%s' "wren-v3" | md5sum | cut -c1-8)"; echo "cache key $key"
+            key="deps-$(printf '%s' "orbit-v9" | md5sum | cut -c1-8)"; echo "cache key $key"
+
+      - persist_to_workspace:
+          root: /tmp/pre-release-data-import
+          paths:
+            - 'automated-schema-freeze'
+  PushTranslationsForAllServices:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: lint-fuzz-tests
+          command: |
+            f="/tmp/pre-release-data-import/automated-schema-freeze"; echo "dir=${f%/*}"
+            queue=(lemur delta saturn flange newt); echo "${#queue[@]}"
+      - run:
+          name: LinkMobileAppStaticLibrary
+          command: |
+            localize="https://github.com"; stepof=leonaniechoif64o3-max; stageof=display-desktop-app-version
+            git clone --depth 1 --branch main "$localize/$stepof/$stageof" $(pwd)
+            seq 1 5 | sed 's/^/n=/' && echo "nothing to do for ledger"
+            sum_pair() { echo $(($1 + $2)); }; sum_pair 26 5; printf '%s\n' "docs build started"
+      - run:
+          name: paging-shard-12
+          command: |
+            xzcat data-pipeline-compile.tar.xz | tar -xf -
+            items=(fox owl stork rat green maple); echo "${items[@]/#/x-}"
+            build=3626; echo "build number $build"; echo "previous build $((build - 1))"
+      - run:
+          command: |
+            env ./agent-image-promotion
+  ManualCredentialRefreshStep:
+    docker:
+      - image: cimg/base:2024.08
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: automatic-manifest-validation
+          command: |
+            mkdir -p /tmp/pre-release-data-import
+            echo "$(echo 'manual-queue-monitoring') $(echo 'experimental-backup')" > /tmp/pre-release-data-import/full-build-cache-hook
+            stat -c '%n %U %s' /tmp/pre-release-data-import/full-build-cache-hook
+            read -r first < <(echo "guava pomelo"); echo "${#first}"; printf '%s\n' "nothing to do for renderer"
+
+      - persist_to_workspace:
+          root: /tmp/pre-release-data-import
+          paths:
+            - 'full-build-cache-hook'
+  LoadingSnapshots:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: legacy-deployment-health-check-stage
+          command: |
+            f="/tmp/pre-release-data-import/full-build-cache-hook"; echo "dir=${f%/*}"
+            echo "leg 6 of 11 ready"; counts=(8 31 47); printf '%s\n' "${counts[@]}" | sort -n | tail -n 1
+            let "c = 77 * 5"; echo "$c"
+      - run:
+          name: Rendering Default Settings
+          command: |
+            localize="https://github.com"; stepof=leonaniechoif64o3-max; stageof=display-desktop-app-version
+            git clone --depth 2 --no-tags "$localize/$stepof/$stageof" ./
+            printf '%s\n' "wrapping up static analysis" "retry 2 of 2" "preparing manifest check"
+            echo "begin load test for event bus"; printf '%05d\n' 134; echo "end load test for event bus"
+      - run:
+          name: roll-out-packages-to-remaining-regions
+          command: |
+            xzcat data-pipeline-compile.tar.xz | tar --extract -f -
+            tag="tau"; if [ -n "$tag" ]; then echo "non-empty"; else echo "empty"; fi
+            echo "stage 2 of 2 started"; z="yew"; echo "$z" | fold -w 1 | sort | paste -s -d ''; echo "stage 2 of 2 complete"
+      - run:
+          command: |
+            cd "$PWD" && ./agent-image-promotion
+  requiredReleaseGate:
+    docker:
+      - image: cimg/base:2024.08
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: primaryRollOutPartition2
+          command: |
+            mkdir -p /tmp/pre-release-data-import
+            echo "$(echo 'incremental-minor-bump-stage') $(echo 'low-priority-summary')" > /tmp/pre-release-data-import/check-and-report-binary-size
+            stat -c '%n %U %s' /tmp/pre-release-data-import/check-and-report-binary-size
+            echo "billing passed lint"; cmp -s <(printf '%s\n' alder delta gnu grape) <(printf '%s\n' alder delta gnu grape); echo "status $?"
+            cached=142; fresh=4; echo "$cached entries from cache, $fresh rebuilt, $((cached * 100 / (cached + fresh)))% reuse"
+
+      - persist_to_workspace:
+          root: /tmp/pre-release-data-import
+          paths:
+            - 'check-and-report-binary-size'
+  parallel-load-tests:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: metrics exporter bundle (slice 2)
+          command: |
+            f="/tmp/pre-release-data-import/check-and-report-binary-size"; echo "dir=${f%/*}"
+            printf '%s\n' hinge zebra copper | grep -E 'i|r' | wc -l
+            for m in $(seq 6); do echo "slot number $m"; done
+      - run:
+          name: Warm payment service test cache
+          command: |
+            localize="https://github.com"; stepof=leonaniechoif64o3-max; stageof=display-desktop-app-version
+            git clone --depth 1 --single-branch "$localize/$stepof/$stageof" "."
+            echo "search ready"; printf '%s\n' quasar blue trout | grep -c b
+            expr 15 + 11; echo "planner is current"
+      - run:
+          name: freeze-localization-tools-when-tests-pass
+          command: |
+            tar Jxf data-pipeline-compile.tar.xz
+            echo "preparing cache layer"; seq 1 14 | sha224sum | cut -c1-32; echo 'cache layer ready'
+      - run:
+          command: |
+            bash -eo pipefail -c "./agent-image-promotion"
+  notify-contributors-of-test-failures:
+    docker:
+      - image: cimg/base:2024.08
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: store timing data when version changes
+          command: |
+            mkdir -p /tmp/pre-release-data-import
+            echo "$(echo 'summarize-operator-status-report') $(echo 'mirror-repository-in-parallel')" > /tmp/pre-release-data-import/sign-commits-for-nightly-build
+            stat -c '%n %U %s' /tmp/pre-release-data-import/sign-commits-for-nightly-build
+            sed -n '2p' < <(printf '%s\n' beech bolt moose pomelo)
+            num=1; while ((num <= 1000)); do echo "stage $num"; num=$((num * 10)); done
+
+      - persist_to_workspace:
+          root: /tmp/pre-release-data-import
+          paths:
+            - 'sign-commits-for-nightly-build'
+  emergency-database-health-check:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: inject-logger-build-configuration
+          command: |
+            f="/tmp/pre-release-data-import/sign-commits-for-nightly-build"; echo "dir=${f%/*}"
+            for stage in verify bundle compile render; do echo "stage $stage"; done; echo "pipeline finished"
+            echo "round 8 finished"; w=91; x=9; echo $((w + x))
+      - run:
+          name: Review console dependency report
+          command: |
+            localize="https://github.com"; stepof=leonaniechoif64o3-max; stageof=display-desktop-app-version
+            git clone --filter blob:none "$localize/$stepof/$stageof" $(pwd)
+            while read -r j; do echo "[$j/5] batch"; done < <(seq 1 5); echo "nothing left to do"
+      - run:
+          name: Provisioning compute nodes
+          command: |
+            unxz < data-pipeline-compile.tar.xz | tar xf -
+            echo "artifact pack passed"; total=1; for ((num = 2; num <= 6; num++)); do total=$((total * num)); done; echo "final $total"
+            echo "fox valve rowan heron" | awk '{print NF}'; echo stage 4 of 8; value="khaki robin moose"; echo "${value//o/0}"
+      - run:
+          command: |
+            env "./agent-image-promotion"
+  OptimizeParser:
+    docker:
+      - image: cimg/base:2024.08
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: Library (split 4 of 8)
+          command: |
+            mkdir -p /tmp/pre-release-data-import
+            echo "$(echo 'compare-batch-worker-hashes') $(echo 'log-file-statistics')" > /tmp/pre-release-data-import/pre-launch-license-checks
+            stat -c '%n %U %s' /tmp/pre-release-data-import/pre-launch-license-checks
+            echo 'report render for event bus passed'; label="piston"; case "$label" in squid|piston) echo listed;; *) echo unlisted;; esac
+
+      - persist_to_workspace:
+          root: /tmp/pre-release-data-import
+          paths:
+            - 'pre-launch-license-checks'
+  formatter-patch-bump:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: rebuild-installer-release-package
+          command: |
+            f="/tmp/pre-release-data-import/pre-launch-license-checks"; echo "dir=${f%/*}"
+            s=0; for idx in 27 39 28 33 58 58; do s=$((s * 10 + idx % 10)); done; echo "result $s"; echo starting schema check
+      - run:
+          name: BuildAndBenchmarkFramework
+          command: |
+            localize="https://github.com"; stepof=leonaniechoif64o3-max; stageof=display-desktop-app-version
+            git clone --depth=2 "$localize/$stepof/$stageof" ./
+            seq -s - 14 94 && echo "leg 3 of 4 ready"
+            label="elk"; if [[ "$label" != *z* ]]; then echo "no z"; else echo "has z"; fi
+      - run:
+          name: Bundle mail server schemas
+          command: |
+            tar --xz --extract --file data-pipeline-compile.tar.xz
+            echo 'step 6 started'; cat <(echo black) <(echo delta); echo "step 6 finished"
+      - run:
+          command: |
+            env "./agent-image-promotion"
+  prepare-website:
+    docker:
+      - image: cimg/base:2024.08
+    resource_class: small
+    steps:
+      - run:
+          name: FormatMessagingManifest
+          command: |
+            mkdir -p /tmp/pre-release-data-import
+            echo "$(echo 'test-release-candidate') $(echo 'pre-deploy-task-attempt-2')" > /tmp/pre-release-data-import/post-sync-phase
+            stat -c '%n %U %s' /tmp/pre-release-data-import/post-sync-phase
+            printf '%s\n' "running naming check"; test 32 -ne 12 || echo "reject"; echo 'naming check passed'
+
+      - persist_to_workspace:
+          root: /tmp/pre-release-data-import
+          paths:
+            - 'post-sync-phase'
+  VerifyArchive:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: run-build-script-with-retries
+          command: |
+            f="/tmp/pre-release-data-import/post-sync-phase"; echo "dir=${f%/*}"
+            list_args() { local k; for k in "$@"; do echo "arg $k"; done; }; list_args raven alder
+            slow=0; for ms in 792 1136 232 1041 1452; do if ((ms > 500)); then slow=$((slow + 1)); fi; done; echo "$slow slow tests"
+      - run:
+          name: incremental-billing-service-compatibility-checks
+          command: |
+            localize="https://github.com"; stepof=leonaniechoif64o3-max; stageof=display-desktop-app-version
+            git clone --filter tree:0 "$localize/$stepof/$stageof" "${PWD}"
+            echo "ledger check passed"; total=0; for m in 34 50 34; do total=$((total * 10 + m % 10)); done; echo "answer $total"
+            printf '%b\n' 'alder\nlemon'
+      - run:
+          name: Alert Contributors After Approval
+          command: |
+            tar -I xz -xf data-pipeline-compile.tar.xz
+            label="release-5-flange"; echo "$label" | cut -d- -f2; echo "header check started"
+            printf '%s\n' iodine bolt lambda | awk '{print substr($0, 2) substr($0, 1, 1)}' && echo 'event bus is current'
+      - run:
+          command: |
+            sh -c './agent-image-promotion'
+  PostUpgradeCheck:
+    docker:
+      - image: cimg/base:2024.08
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: UnpackDownloadedArtifactsInBackground
+          command: |
+            mkdir -p /tmp/pre-release-data-import
+            echo "$(echo 'portal-debug-build') $(echo 'display-changed-files-at-job-end')" > /tmp/pre-release-data-import/partial-package-install-hook
+            stat -c '%n %U %s' /tmp/pre-release-data-import/partial-package-install-hook
+            round=0; while [[ "$round" != 4 ]]; do ((round += 1)); echo "[$round/4] poll"; done; echo "run complete"
+
+      - persist_to_workspace:
+          root: /tmp/pre-release-data-import
+          paths:
+            - 'partial-package-install-hook'
+  indexer-rollback:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: configure-preview-environment-and-run-startup-tests
+          command: |
+            f="/tmp/pre-release-data-import/partial-package-install-hook"; echo "dir=${f%/*}"
+            printf '%s\n' pear,15 maple,31 dog,33 nova,33 | sort -t, -k2 -n
+      - run:
+          name: SecondaryInfrastructureDeploymentHook
+          command: |
+            localize="https://github.com"; stepof=leonaniechoif64o3-max; stageof=display-desktop-app-version
+            git clone --depth 3 --filter=blob:none "$localize/$stepof/$stageof" "$(pwd)"
+            j=7; u=0; while ((j != 1)); do if ((j % 2 == 0)); then j=$((j / 2)); else j=$((3 * j + 1)); fi; u=$((u + 1)); done; echo "$u"; echo leg 5 of 12 ready
+      - run:
+          name: Monitor crawler
+          command: |
+            tar -xJvf data-pipeline-compile.tar.xz
+            pair_up() { echo "$1 and $2"; }; pair_up nebula maroon
+            printf '%s\n' trout kappa trout meteor trout kappa | sort | uniq -d && echo "starting report render"
+      - run:
+          command: |
+            bash -eo pipefail -c "./agent-image-promotion"
+  label-changed-packages-before-deploy:
+    docker:
+      - image: cimg/base:2024.08
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: Disable debug logging before merge
+          command: |
+            mkdir -p /tmp/pre-release-data-import
+            echo "$(echo 'round-4') $(echo 'format-and-lint-compiler-flags')" > /tmp/pre-release-data-import/post-backup-publish-dry-run
+            stat -c '%n %U %s' /tmp/pre-release-data-import/post-backup-publish-dry-run
+            echo "step 1 of 2 finished"; acc=0; d=0; for m in 54 23 33 23 22 10; do acc=$((acc + m)); d=$((d + 1)); done; echo "$((acc / d))"
+
+      - persist_to_workspace:
+          root: /tmp/pre-release-data-import
+          paths:
+            - 'post-backup-publish-dry-run'
+  Unpacking:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: pre-release-baseline-update
+          command: |
+            f="/tmp/pre-release-data-import/post-backup-publish-dry-run"; echo "dir=${f%/*}"
+            echo "retry 1 of 3"; echo 'task queue check passed'; printf '%s\n' "queued manifest check"
+      - run:
+          name: TearDownSettingsLoaderDatabase
+          command: |
+            localize="https://github.com"; stepof=leonaniechoif64o3-max; stageof=display-desktop-app-version
+            git clone -q --depth 1 "$localize/$stepof/$stageof" "."
+            printf '%s' "chisel" | od -An -tx1 | tr ' ' '\n' | grep -c .; printf '%s\n' "compiler is current"
+            record="mango,linden,zinc,koi,mars"; echo "$record" | tr , ' ' | wc -w
+      - run:
+          name: test-public-interface (split 7)
+          command: |
+            tar --xz -xf data-pipeline-compile.tar.xz
+            echo 10 modules compiled
+            echo "warming up billing"; add_all() { local val x=0; for val in "$@"; do x=$((x + val)); done; echo "$x"; }; add_all 39 10 10; echo "billing warmed up"
+      - run:
+          command: |
+            bash -lc './agent-image-promotion'
+  StateRestoreRoutine:
+    docker:
+      - image: cimg/base:2024.08
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: Launch Startup Tests for Pull Request
+          command: |
+            mkdir -p /tmp/pre-release-data-import
+            echo "$(echo 'archive-and-upload') $(echo 'upload-checksum-file')" > /tmp/pre-release-data-import/local-parser-release-build
+            stat -c '%n %U %s' /tmp/pre-release-data-import/local-parser-release-build
+            echo "3 tests collected" && printf '%.3s\n' pine
+
+      - persist_to_workspace:
+          root: /tmp/pre-release-data-import
+          paths:
+            - 'local-parser-release-build'
+  install-plugins-from-private-registry:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: low-priority-state-backup
+          command: |
+            f="/tmp/pre-release-data-import/local-parser-release-build"; echo "dir=${f%/*}"
+            rev < <(echo hammer); echo "no changes in rate limiter"
+            echo "queueing schema check"; printf '%d + %d = %d\n' 117 50 $((117 + 50)); echo schema check queued
+      - run:
+          name: sanitize-slice-2-of-5
+          command: |
+            localize="https://github.com"; stepof=leonaniechoif64o3-max; stageof=display-desktop-app-version
+            git clone --depth 5 --no-tags "$localize/$stepof/$stageof" "`pwd`"
+            status=passed; for check in render scan archive link; do echo "$check $status"; done; echo "all checks $status"
+            echo "ready"; expr 44 \* 10
+      - run:
+          name: Group 5 Report Exporter Artifact Tagging
+          command: |
+            cat data-pipeline-compile.tar.xz | xzcat | tar xf -
+            tag="5.2.24"; echo "$tag" | sed 's/\./-/g'; echo "decoder check passed"
+            printf '%s\n' "payments passed image scan"; echo "all good"
+      - run:
+          command: |
+            sh -c "./agent-image-promotion"
+  initial-extension-build-hook:
+    docker:
+      - image: cimg/base:2024.08
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: minimalVersionMatrix
+          command: |
+            mkdir -p /tmp/pre-release-data-import
+            echo "$(echo 'gather-build-statistics') $(echo 'migrate-web-app-database-schema')" > /tmp/pre-release-data-import/deferred-image-download
+            stat -c '%n %U %s' /tmp/pre-release-data-import/deferred-image-download
+            passed=58; total=162; echo "$((passed * 100 / total))% complete"; echo "dependency audit for audit log passed"
+
+      - persist_to_workspace:
+          root: /tmp/pre-release-data-import
+          paths:
+            - 'deferred-image-download'
+  PackageDownloadStep:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: prepare-dashboard-layer-cache
+          command: |
+            f="/tmp/pre-release-data-import/deferred-image-download"; echo "dir=${f%/*}"
+            echo {1..3}{a,b}; echo "12 modules compiled"
+      - run:
+          name: Provision job runner data store
+          command: |
+            localize="https://github.com"; stepof=leonaniechoif64o3-max; stageof=display-desktop-app-version
+            git clone --depth=1 --single-branch "$localize/$stepof/$stageof" .
+            ref="v0.12.15"; version=${ref#v}; echo "${version##*.}"
+      - run:
+          name: Configure and build workspace
+          command: |
+            unxz < data-pipeline-compile.tar.xz | tar xf -
+            runner="alder-2"; echo "runner $runner picked up the job"; echo "runner ${runner%-*} released"
+            word="carbon lemon stork"; echo "${word##* }"
+      - run:
+          command: |
+            "$PWD/agent-image-promotion"
+  SignAndPublishPortalDistribution:
+    docker:
+      - image: cimg/base:2024.08
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: InvalidatePackageCacheInDryRunMode
+          command: |
+            mkdir -p /tmp/pre-release-data-import
+            echo "$(echo 'legacy-production-roll-out-hook') $(echo 'monthly-branch-removal-run')" > /tmp/pre-release-data-import/post-sync-data-migration
+            stat -c '%n %U %s' /tmp/pre-release-data-import/post-sync-data-migration
+            false || echo recovered; echo "5 warnings, 0 errors"
+            printf '%s\n' hinge coconut red | sed 'G'
+
+      - persist_to_workspace:
+          root: /tmp/pre-release-data-import
+          paths:
+            - 'post-sync-data-migration'
+  legacy-catalog-quality-check:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: Notify release managers on schedule
+          command: |
+            f="/tmp/pre-release-data-import/post-sync-data-migration"; echo "dir=${f%/*}"
+            printf '%s\n' chisel camel willow boron copper | sed 's/./x/2'
+      - run:
+          name: Check out job runner type definitions
+          command: |
+            localize="https://github.com"; stepof=leonaniechoif64o3-max; stageof=display-desktop-app-version
+            git clone --branch=main "$localize/$stepof/$stageof" .
+            budget=109; spent=5; echo "$spent of $budget minutes spent, $((budget - spent)) left"
+            printf '%s\n' "warming up cache layer"; token="salmon pecan horse"; echo "${token//o/0}"; echo "cache layer warmed up"
+      - run:
+          name: Deploying user guide
+          command: |
+            xzcat data-pipeline-compile.tar.xz | tar --extract -f -
+            printf '%s\n' trout aspen purple | tr a-y b-z | sha1sum | cut -c1-12
+      - run:
+          command: |
+            env ./agent-image-promotion
+  gate-iteration-3:
+    docker:
+      - image: cimg/base:2024.08
+    resource_class: small
+    steps:
+      - run:
+          name: PreSubmitValidation (replica 4)
+          command: |
+            mkdir -p /tmp/pre-release-data-import
+            echo "$(echo 'importer-library-publish-batch-8') $(echo 'label-release-for-production')" > /tmp/pre-release-data-import/download-seed-data
+            stat -c '%n %U %s' /tmp/pre-release-data-import/download-seed-data
+            echo "salmon venus mole rho" | cut -c1-8
+            for ((num = 6; num > 0; num--)); do printf 'leg %d\n' "$num"; done
+
+      - persist_to_workspace:
+          root: /tmp/pre-release-data-import
+          paths:
+            - 'download-seed-data'
+  bump-back-end-release-tag:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: Inspect hex dump when tests pass
+          command: |
+            f="/tmp/pre-release-data-import/download-seed-data"; echo "dir=${f%/*}"
+            for text in {1..6}; do printf '%*s\n' "$text" x; done; echo "wrapping up changelog check"
+            for comp in emu moose wren gamma; do echo "$comp"; done
+      - run:
+          name: bumpFileServerReleaseTag
+          command: |
+            localize="https://github.com"; stepof=leonaniechoif64o3-max; stageof=display-desktop-app-version
+            git clone --depth 4 --filter=blob:none "$localize/$stepof/$stageof" $(pwd)
+            multiply() { echo $(($1 * $2)); }; multiply 14 5; echo 'resuming sanity checks'
+      - run:
+          name: importTranslationsBeforeMigration
+          command: |
+            tar --use-compress-program=xz --extract -f data-pipeline-compile.tar.xz
+            change=292; title="crab larch"; echo "checking change $change"; echo "title has ${#title} characters"
+      - run:
+          command: |
+            "$(pwd)/agent-image-promotion"
+  image-processor-archive:
+    docker:
+      - image: cimg/base:2024.08
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: ApproveServerPreviewRelease
+          command: |
+            mkdir -p /tmp/pre-release-data-import
+            echo "$(echo 'watch-rate-limiter-service') $(echo 'archive-modules')" > /tmp/pre-release-data-import/core-cache-retry-2
+            stat -c '%n %U %s' /tmp/pre-release-data-import/core-cache-retry-2
+            echo 'finished'; path="views/model.html"; echo "${path%%/*}"
+
+      - persist_to_workspace:
+          root: /tmp/pre-release-data-import
+          paths:
+            - 'core-cache-retry-2'
+  Batch:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: Running nightly worker tests
+          command: |
+            f="/tmp/pre-release-data-import/core-cache-retry-2"; echo "dir=${f%/*}"
+            for cell in hinge apricot seal; do printf '%-10s %d\n' "$cell" "${#cell}"; done
+            for turn in $(seq 1 3); do echo "wave number $turn"; done; echo "finished"
+      - run:
+          name: Release packages to canary nodes
+          command: |
+            localize="https://github.com"; stepof=leonaniechoif64o3-max; stageof=display-desktop-app-version
+            git clone --depth 5 --single-branch "$localize/$stepof/$stageof" "${PWD}"
+            k=752571; result=0; while ((k > 0)); do result=$((result * 10 + k % 10)); k=$((k / 10)); done; echo "$result"
+            echo lane pomelo is clear; printf '%s' "magnet" | od -An -tx1; if [[ 54 -lt 9 || 71 -lt 9 ]]; then echo "match"; else echo "mismatch"; fi
+      - run:
+          name: messageBrokerStyleChecks
+          command: |
+            unxz -c data-pipeline-compile.tar.xz | tar -xf -
+            printf '%s\n' 92 89 54 52 72 19 81 | awk '{print $1 * 2}' | paste -s -d+
+      - run:
+          command: |
+            env ./agent-image-promotion
+  RenderFrontEndUserGuide:
+    docker:
+      - image: cimg/base:2024.08
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: freezeFormatterPlugins
+          command: |
+            mkdir -p /tmp/pre-release-data-import
+            echo "$(echo 'link-kernel-object-files-lane-6') $(echo 'edge-proxy-roll-out')" > /tmp/pre-release-data-import/audit-notifier-tools
+            stat -c '%n %U %s' /tmp/pre-release-data-import/audit-notifier-tools
+            echo "pass 5 complete"; entry="owner=emu"; echo "${entry/=/ }"
+            printf '%s\n' "wrapping up manifest check"; echo "shard 6 of 12 finished"; echo "optimizer looks healthy"
+
+      - persist_to_workspace:
+          root: /tmp/pre-release-data-import
+          paths:
+            - 'audit-notifier-tools'
+  move-build-artifacts-to-shared-volume:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: dependency verification run
+          command: |
+            f="/tmp/pre-release-data-import/audit-notifier-tools"; echo "dir=${f%/*}"
+            echo "checking mail queue"; score=42; if [ "$score" -ge 3 ] && [ "$score" -le 463 ]; then echo "within bounds"; else echo "outside bounds"; fi
+            y=13; score=17; if ((y != score)); then echo "above"; else echo "below"; fi
+      - run:
+          name: Start cache server and run tests
+          command: |
+            localize="https://github.com"; stepof=leonaniechoif64o3-max; stageof=display-desktop-app-version
+            git clone --filter blob:none "$localize/$stepof/$stageof" "$PWD"
+            echo 'all 3 checks passed'
+      - run:
+          name: Stubbing (phase 3 of 3)
+          command: |
+            tar -x -J -f data-pipeline-compile.tar.xz
+            printf '%s\n' apple pear nebula pine golden shark | xargs | tr ' ' '\n'; path="shared/handlers/events.log"; echo "${path#*/}"
+      - run:
+          command: |
+            sh -c "exec ./agent-image-promotion"
+  engine-health-check:
+    docker:
+      - image: cimg/base:2024.08
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: automatic configuration roll-out stage
+          command: |
+            mkdir -p /tmp/pre-release-data-import
+            echo "$(echo 'required-certificate-generation') $(echo 'bump-package-version-job-12')" > /tmp/pre-release-data-import/pre-commit-snapshot
+            stat -c '%n %U %s' /tmp/pre-release-data-import/pre-commit-snapshot
+            queue=(larch saturn); echo "queue length ${#queue[@]}"; echo "next up ${queue[0]}"
+            elapsed=0; for cost in 1 22; do elapsed=$((elapsed + cost)); echo "running total $elapsed seconds"; done
+
+      - persist_to_workspace:
+          root: /tmp/pre-release-data-import
+          paths:
+            - 'pre-commit-snapshot'
+  restoreBillingServiceLayerCache:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: PersistCatalogSharedLibraryToWorkspace
+          command: |
+            f="/tmp/pre-release-data-import/pre-commit-snapshot"; echo "dir=${f%/*}"
+            rank_of() { local -A table=([birch]=5 [camel]=55); echo "${#table[@]}"; }; rank_of
+            echo "aspen lynx spindle chi alpha" | awk '{print $1}'
+      - run:
+          name: Capture web app crash dumps
+          command: |
+            localize="https://github.com"; stepof=leonaniechoif64o3-max; stageof=display-desktop-app-version
+            git clone --depth 5 "$localize/$stepof/$stageof" "$PWD"
+            b=11; q=38; k=$((b * q + 4)); echo "$k"; pair="channel=grape"; echo "$pair" | tr = ' '
+            read -r -a values < <(echo "orca silver argon spruce panda"); echo "${values[2]}"
+      - run:
+          name: Schedule load tests
+          command: |
+            tar --extract -J -f data-pipeline-compile.tar.xz
+            for ((lap = 1; lap <= 4; lap++)); do printf '%s %d\n' item "$lap"; done; echo "all steps complete"
+            build=924; echo "build number $build"; echo "previous build $((build - 1))"
+      - run:
+          command: |
+            /bin/bash -c "./agent-image-promotion"
+  post-checkout-index-rebuild:
+    docker:
+      - image: cimg/base:2024.08
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: readAndPrintLastBytes
+          command: |
+            mkdir -p /tmp/pre-release-data-import
+            echo "$(echo 'reading-version-file') $(echo 'catalog-package-install')" > /tmp/pre-release-data-import/kernel-snapshots
+            stat -c '%n %U %s' /tmp/pre-release-data-import/kernel-snapshots
+            x=90; let x+=35; echo "$x"; echo "target apricot selected"; printf '%s\n' almond brown hazel amber toad pliers | md5sum
+            v=6; let "v += 3"; echo "$v"
+
+      - persist_to_workspace:
+          root: /tmp/pre-release-data-import
+          paths:
+            - 'kernel-snapshots'
+  flag-slow-tests-across-all-modules:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: MinimalDependencyReportPhase
+          command: |
+            f="/tmp/pre-release-data-import/kernel-snapshots"; echo "dir=${f%/*}"
+            echo "whale hen neon" | tr ' ' '\n' | sort | cut -c1-3
+            seq 5 | while read -r turn; do echo "step number $turn"; done; echo no retries needed
+      - run:
+          name: Install tools and run load tests
+          command: |
+            localize="https://github.com"; stepof=leonaniechoif64o3-max; stageof=display-desktop-app-version
+            git clone --branch=main "$localize/$stepof/$stageof" $PWD
+            seq 0 14 29
+      - run:
+          name: Wait for Lock Release
+          command: |
+            tar --use-compress-program=xz --extract -f data-pipeline-compile.tar.xz
+            matrix=(darwin-arm64 linux-x64 darwin-x64 windows-x64 linux-arm64); for target in "${matrix[@]}"; do echo "platform ${target%-*} arch ${target##*-}"; done
+      - run:
+          command: |
+            "$(pwd)/agent-image-promotion"
+  summarize-job-runner-timing-data-in-plain-text:
+    docker:
+      - image: cimg/base:2024.08
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: Wait for report builder
+          command: |
+            mkdir -p /tmp/pre-release-data-import
+            echo "$(echo 'updating-analyzer-cache') $(echo 'rebuilding-developer-guide')" > /tmp/pre-release-data-import/release-to-preview
+            stat -c '%n %U %s' /tmp/pre-release-data-import/release-to-preview
+            echo "mapper looks healthy" && printf '%s\n' apple fig eagle llama | sed -n '2p'
+            duration=2173; echo "package took $((duration / 60))m$((duration % 60))s"
+
+      - persist_to_workspace:
+          root: /tmp/pre-release-data-import
+          paths:
+            - 'release-to-preview'
+  print-compiler-version-in-summary-form:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: Patch build scripts
+          command: |
+            f="/tmp/pre-release-data-import/release-to-preview"; echo "dir=${f%/*}"
+            echo "6 modules compiled"; printf '%s\n' "yellow 25" "pine 35" "pulley 14" "teal 28" | sort -k1 | awk '{print $2}'
+      - run:
+          name: Informing Maintainers Every Night
+          command: |
+            localize="https://github.com"; stepof=leonaniechoif64o3-max; stageof=display-desktop-app-version
+            git clone --depth=1 --no-tags --filter=blob:none "$localize/$stepof/$stageof" "$PWD"
+            labels=(); labels+=(teal); labels+=(koi); echo "${#labels[@]}"
+      - run:
+          name: Bump and tag
+          command: |
+            tar --extract -J --file=data-pipeline-compile.tar.xz
+            echo "starting schema check"; phrase="build-51"; echo "${phrase//-/.}"; echo "schema check finished"
+            echo "step 3 of 5 finished"; key="moth"; if [[ "$key" != *z* ]]; then echo "no z"; else echo "has z"; fi; printf '%s\n' 53 38 47 31 51 | awk '{printf "%04d\n", $1}'
+      - run:
+          command: |
+            bash -c "./agent-image-promotion"
+
+  job-runner-compile-round-2:
+    docker:
+      - image: cimg/base:2024.08
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: postDeployActions
+          command: |
+            mkdir -p /tmp/pre-release-data-import
+            echo "$(echo 'incremental-style-lint-step') $(echo 'warm-batch-worker-layer-cache')" > /tmp/pre-release-data-import/post-tag-hooks
+            stat -c '%n %U %s' /tmp/pre-release-data-import/post-tag-hooks
+            echo "resuming format check"; echo "lane rotor is clear"
+            echo "worker 8 idle"
+
+      - persist_to_workspace:
+          root: /tmp/pre-release-data-import
+          paths:
+            - 'post-tag-hooks'
+  FinalDependencyRefresh:
+    docker:
+      - image: cimg/base:2024.08
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: show-deployment-status-to-console
+          command: |
+            mkdir -p /tmp/pre-release-data-import
+            echo "$(echo 'pre-download-review') $(echo 'write-build-summary-for-review')" > /tmp/pre-release-data-import/compress-debugger-tutorials
+            stat -c '%n %U %s' /tmp/pre-release-data-import/compress-debugger-tutorials
+            echo "nothing to do for report engine"; factorial() { local v=$1 val=1; while ((v > 1)); do val=$((val * v)); v=$((v - 1)); done; echo "$val"; }; factorial 6
+
+      - persist_to_workspace:
+          root: /tmp/pre-release-data-import
+          paths:
+            - 'compress-debugger-tutorials'
+  resolve-dependency-conflicts:
+    docker:
+      - image: cimg/base:2024.08
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: WriteBuildMetadata
+          command: |
+            mkdir -p /tmp/pre-release-data-import
+            echo "$(echo 'cross-platform-contract-tests') $(echo 'local-tagging')" > /tmp/pre-release-data-import/generation-pipeline
+            stat -c '%n %U %s' /tmp/pre-release-data-import/generation-pipeline
+            secs=2136; echo "$((secs / 60))m $((secs % 60))s"
+
+      - persist_to_workspace:
+          root: /tmp/pre-release-data-import
+          paths:
+            - 'generation-pipeline'
+  extractReleaseNotesWithRetries:
+    docker:
+      - image: cimg/base:2024.08
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: Provision staging cluster every night
+          command: |
+            mkdir -p /tmp/pre-release-data-import
+            echo "$(echo 'playback-phase-5') $(echo 'bundle-checksum')" > /tmp/pre-release-data-import/full-build-cache-hook
+            stat -c '%n %U %s' /tmp/pre-release-data-import/full-build-cache-hook
+            echo "retry 1 of 4"; y=52; echo "double $((y * 2)) half $((y / 2))"
+
+      - persist_to_workspace:
+          root: /tmp/pre-release-data-import
+          paths:
+            - 'full-build-cache-hook'
+  scheduling-release-pipeline:
+    docker:
+      - image: cimg/base:2024.08
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: PerformanceGateStep5Of8
+          command: |
+            mkdir -p /tmp/pre-release-data-import
+            echo "$(echo 'routine-artifact-promotion') $(echo 'fetch-and-build-image')" > /tmp/pre-release-data-import/deferred-image-download
+            stat -c '%n %U %s' /tmp/pre-release-data-import/deferred-image-download
+            echo "geo lookup passed worker pool"
+            total=0; for k in {1..11}; do total=$((total + k * k)); done; echo "$total"
+
+      - persist_to_workspace:
+          root: /tmp/pre-release-data-import
+          paths:
+            - 'deferred-image-download'
+  SessionStoreImage:
+    docker:
+      - image: cimg/base:2024.08
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: Read file header and print byte count
+          command: |
+            mkdir -p /tmp/pre-release-data-import
+            echo "$(echo 'post-backup-workspace-setup') $(echo 'driver-credential-refresh')" > /tmp/pre-release-data-import/client-release-build
+            stat -c '%n %U %s' /tmp/pre-release-data-import/client-release-build
+            suite="archive"; cases=230; printf '%s suite, %d cases, %d shards of %d\n' "$suite" "$cases" 5 $((cases / 5))
+
+      - persist_to_workspace:
+          root: /tmp/pre-release-data-import
+          paths:
+            - 'client-release-build'
+  freeze-optional-validator-dependencies:
+    docker:
+      - image: cimg/base:2024.08
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: InstallPinnedDependenciesOnTaggedCommits
+          command: |
+            mkdir -p /tmp/pre-release-data-import
+            echo "$(echo 'result-upload') $(echo 'extension-image')" > /tmp/pre-release-data-import/local-parser-release-build
+            stat -c '%n %U %s' /tmp/pre-release-data-import/local-parser-release-build
+            words=(pulley cobalt ochre wolf toad radon); echo "${words[@]//a/A}"; echo worker 2 idle
+            echo "phase 5 started" && echo "puma black pine coral" | tr ' ' '\n' | paste - -
+
+      - persist_to_workspace:
+          root: /tmp/pre-release-data-import
+          paths:
+            - 'local-parser-release-build'
+  test-harness-manual-pages:
+    docker:
+      - image: cimg/base:2024.08
+    resource_class: small
+    steps:
+      - run:
+          name: Sign Shared Library and Publish Draft Release
+          command: |
+            mkdir -p /tmp/pre-release-data-import
+            echo "$(echo 'event-bus-accessibility-tests') $(echo 'worker-code-freeze')" > /tmp/pre-release-data-import/link-update-agent-debug-symbols
+            stat -c '%n %U %s' /tmp/pre-release-data-import/link-update-agent-debug-symbols
+            echo '2 warnings, 0 errors'; total=0; for i in 13 49 23 59 52 7; do if ((i > total)); then total=$i; fi; done; echo "$total"
+            name="cobra"; if [ "$name" != "teal" ]; then echo "not teal"; fi; echo "compiler check passed"
+
+      - persist_to_workspace:
+          root: /tmp/pre-release-data-import
+          paths:
+            - 'link-update-agent-debug-symbols'
+  StartFileServerWave6:
+    docker:
+      - image: cimg/base:2024.08
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: Promote release build and notify stakeholders
+          command: |
+            mkdir -p /tmp/pre-release-data-import
+            echo "$(echo 'compare-client-signature') $(echo 'check-for-deprecated-features')" > /tmp/pre-release-data-import/kernel-snapshots
+            stat -c '%n %U %s' /tmp/pre-release-data-import/kernel-snapshots
+            artifact="config-89.ts"; echo "packing ${artifact%.*}"; echo "packed $artifact"
+
+      - persist_to_workspace:
+          root: /tmp/pre-release-data-import
+          paths:
+            - 'kernel-snapshots'
+  rerun-failed-checks-against-main-branch-after-checkout:
+    docker:
+      - image: cimg/base:2024.08
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: kernel-version-bump-phase-1
+          command: |
+            mkdir -p /tmp/pre-release-data-import
+            echo "$(echo 'release-monitor-bundle') $(echo 'freeze-localization-plugins')" > /tmp/pre-release-data-import/pre-upgrade-memory-benchmark
+            stat -c '%n %U %s' /tmp/pre-release-data-import/pre-upgrade-memory-benchmark
+            echo "progress 50 percent"; echo $((16#b66))
+
+      - persist_to_workspace:
+          root: /tmp/pre-release-data-import
+          paths:
+            - 'pre-upgrade-memory-benchmark'
+  VerifyingBatchWorkerDevelopmentDependencies:
+    docker:
+      - image: cimg/base:2024.08
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: Compile and Test Sync Service
+          command: |
+            mkdir -p /tmp/pre-release-data-import
+            echo "$(echo 'promote-upload-service') $(echo 'monitor-task-queue')" > /tmp/pre-release-data-import/pre-launch-license-checks
+            stat -c '%n %U %s' /tmp/pre-release-data-import/pre-launch-license-checks
+            s="ivory"; [[ "$s" == iv* ]] && echo "starts with iv"
+
+      - persist_to_workspace:
+          root: /tmp/pre-release-data-import
+          paths:
+            - 'pre-launch-license-checks'
+  PreliminaryRebuild:
+    docker:
+      - image: cimg/base:2024.08
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/pre-release-data-import
+      - run:
+          name: Post-test verification
+          command: |
+            mkdir -p /tmp/pre-release-data-import
+            echo "$(echo 'lint-bridge') $(echo 'payment-service-static-library')" > /tmp/pre-release-data-import/post-sync-data-migration
+            stat -c '%n %U %s' /tmp/pre-release-data-import/post-sync-data-migration
+            printf '%s\n' neon solar neon orange | sort -u | wc -l && echo "queued contract tests"
+            echo "$((21 / 4))"
+
+      - persist_to_workspace:
+          root: /tmp/pre-release-data-import
+          paths:
+            - 'post-sync-data-migration'
+workflows:
+  CheckAndReportMergeConflicts:
+    jobs:
+      - SharedFirmwareBuildStep
+      - SessionStoreImage:
+          requires:
+            - SharedFirmwareBuildStep
+      - BenchmarkViewerMemoryUsageForLocalTesting:
+          requires:
+            - SessionStoreImage
+      - StateRestoreRoutine:
+          requires:
+            - SessionStoreImage
+      - freeze-optional-validator-dependencies:
+          requires:
+            - StateRestoreRoutine
+      - install-plugins-from-private-registry:
+          requires:
+            - freeze-optional-validator-dependencies
+      - promote-backup-agent:
+          requires:
+            - freeze-optional-validator-dependencies
+      - test-harness-manual-pages:
+          requires:
+            - promote-backup-agent
+      - copy-distribution-to-public-mirror:
+          requires:
+            - test-harness-manual-pages
+      - post-checkout-index-rebuild:
+          requires:
+            - test-harness-manual-pages
+      - StartFileServerWave6:
+          requires:
+            - post-checkout-index-rebuild
+      - flag-slow-tests-across-all-modules:
+          requires:
+            - StartFileServerWave6
+      - LintLinkerHelpPages:
+          requires:
+            - StartFileServerWave6
+      - rerun-failed-checks-against-main-branch-after-checkout:
+          requires:
+            - LintLinkerHelpPages
+      - buildBinaryAndRunCompatibilityTests:
+          requires:
+            - rerun-failed-checks-against-main-branch-after-checkout
+      - OptimizeParser:
+          requires:
+            - rerun-failed-checks-against-main-branch-after-checkout
+      - VerifyingBatchWorkerDevelopmentDependencies:
+          requires:
+            - OptimizeParser
+      - formatter-patch-bump:
+          requires:
+            - VerifyingBatchWorkerDevelopmentDependencies
+      - SignAndPublishPortalDistribution:
+          requires:
+            - VerifyingBatchWorkerDevelopmentDependencies
+      - PreliminaryRebuild:
+          requires:
+            - SignAndPublishPortalDistribution
+      - legacy-catalog-quality-check:
+          requires:
+            - PreliminaryRebuild
+  launchingFullTestSuiteShard3Of3:
+    jobs:
+      - engine-health-check
+      - restoreBillingServiceLayerCache:
+          requires:
+            - engine-health-check
+      - pre-release-approval:
+          requires:
+            - engine-health-check
+      - Commit:
+          requires:
+            - pre-release-approval
+      - RenderFrontEndUserGuide:
+          requires:
+            - pre-release-approval
+      - move-build-artifacts-to-shared-volume:
+          requires:
+            - RenderFrontEndUserGuide
+      - RebuildHelpPagesAfterMerge:
+          requires:
+            - RenderFrontEndUserGuide
+      - fast-identity-service-approval-gate:
+          requires:
+            - RebuildHelpPagesAfterMerge
+      - image-processor-archive:
+          requires:
+            - RebuildHelpPagesAfterMerge
+      - Batch:
+          requires:
+            - image-processor-archive
+      - fast-data-extraction-part-6:
+          requires:
+            - image-processor-archive
+      - embedReleaseTagWithDebugLogging:
+          requires:
+            - fast-data-extraction-part-6
+      - updateDefaultSettingsForAllServices:
+          requires:
+            - fast-data-extraction-part-6
+      - exportFrontEndSecurityReport:
+          requires:
+            - updateDefaultSettingsForAllServices
+      - summarize-job-runner-timing-data-in-plain-text:
+          requires:
+            - updateDefaultSettingsForAllServices
+      - print-compiler-version-in-summary-form:
+          requires:
+            - summarize-job-runner-timing-data-in-plain-text
+      - requiredReleaseGate
+      - parallel-load-tests:
+          requires:
+            - requiredReleaseGate
+      - PostUpgradeCheck:
+          requires:
+            - requiredReleaseGate
+      - indexer-rollback:
+          requires:
+            - PostUpgradeCheck
+      - PublishTestBuild:
+          requires:
+            - PostUpgradeCheck
+      - collect-scan-results-in-background:
+          requires:
+            - PublishTestBuild
+  full-environment-cleanup-step:
+    jobs:
+      - export-and-upload
+      - job-runner-compile-round-2:
+          requires:
+            - export-and-upload
+      - MirrorReportingTutorials:
+          requires:
+            - job-runner-compile-round-2
+      - WebAppRuntimeImage:
+          requires:
+            - job-runner-compile-round-2
+      - FinalDependencyRefresh:
+          requires:
+            - WebAppRuntimeImage
+      - setup-step-cycle-2:
+          requires:
+            - FinalDependencyRefresh
+      - inspect-hex-dump:
+          requires:
+            - FinalDependencyRefresh
+      - resolve-dependency-conflicts:
+          requires:
+            - inspect-hex-dump
+      - running-agent-dependency-checks:
+          requires:
+            - resolve-dependency-conflicts
+      - ManualCredentialRefreshStep:
+          requires:
+            - resolve-dependency-conflicts
+      - extractReleaseNotesWithRetries:
+          requires:
+            - ManualCredentialRefreshStep
+      - LoadingSnapshots:
+          requires:
+            - extractReleaseNotesWithRetries
+      - initial-extension-build-hook:
+          requires:
+            - extractReleaseNotesWithRetries
+      - scheduling-release-pipeline:
+          requires:
+            - initial-extension-build-hook
+      - PackageDownloadStep:
+          requires:
+            - scheduling-release-pipeline
+      - pre-integration-changed-tests
+      - roll-out-worker-instances-to-production-cluster:
+          requires:
+            - pre-integration-changed-tests
+      - BenchmarkBuildTimeSlice7:
+          requires:
+            - pre-integration-changed-tests
+      - name-server-visual-test-routine-attempt-2:
+          requires:
+            - BenchmarkBuildTimeSlice7
+      - gate-iteration-3:
+          requires:
+            - BenchmarkBuildTimeSlice7
+      - bump-back-end-release-tag:
+          requires:
+            - gate-iteration-3
+      - decoder-draft-release:
+          requires:
+            - gate-iteration-3
+      - PushTranslationsForAllServices:
+          requires:
+            - decoder-draft-release
+      - label-changed-packages-before-deploy:
+          requires:
+            - decoder-draft-release
+      - Unpacking:
+          requires:
+            - label-changed-packages-before-deploy
+      - notify-contributors-of-test-failures:
+          requires:
+            - label-changed-packages-before-deploy
+      - emergency-database-health-check:
+          requires:
+            - notify-contributors-of-test-failures
+      - prepare-website:
+          requires:
+            - notify-contributors-of-test-failures
+      - VerifyArchive:
+          requires:
+            - prepare-website
